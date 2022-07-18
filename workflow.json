@@ -1,0 +1,9 @@
+{
+  "id" : "jt3z5ahd50t3mmfx6ivy",
+  "name" : "snowex_ml_full_stack",
+  "description" : "full stack ml workflow of snowex from data retrieving from NSIDC to training models.",
+  "owner" : "111111",
+  "confidential" : "FALSE",
+  "edges" : "[{\"source\":{\"title\":\"snowex_nsidc_search\",\"id\":\"4fh28s-EPcgc\",\"x\":425,\"y\":59.995826721191406,\"color\":\"\"},\"target\":{\"title\":\"snowex_nsidc_download_api\",\"id\":\"li3z29-jvE6t\",\"x\":631,\"y\":142,\"color\":\"\"}},{\"source\":{\"title\":\"snowex_nsidc_download_api\",\"id\":\"li3z29-jvE6t\",\"x\":631,\"y\":142,\"color\":\"\"},\"target\":{\"title\":\"snowex_nsidc_read_data\",\"id\":\"pvrvwa-dpOrs\",\"x\":631,\"y\":322,\"color\":\"\"}},{\"source\":{\"title\":\"snowex_nsidc_search\",\"id\":\"4fh28s-EPcgc\",\"x\":425,\"y\":59.995826721191406,\"color\":\"\"},\"target\":{\"title\":\"snowex_nsidc_download_script\",\"id\":\"6zzyji-xo0u7\",\"x\":343,\"y\":245,\"color\":\"\"}},{\"source\":{\"title\":\"snowex_nsidc_read_data\",\"id\":\"pvrvwa-dpOrs\",\"x\":631,\"y\":322,\"color\":\"\"},\"target\":{\"title\":\"snowex_ml_experiment\",\"id\":\"7nyo77-14Q6Y\",\"x\":467,\"y\":462,\"color\":\"\"}},{\"source\":{\"title\":\"snowex_nsidc_download_script\",\"id\":\"6zzyji-xo0u7\",\"x\":343,\"y\":245,\"color\":\"\"},\"target\":{\"title\":\"snowex_ml_experiment\",\"id\":\"7nyo77-14Q6Y\",\"x\":467,\"y\":462,\"color\":\"\"}}]",
+  "nodes" : "[{\"title\":\"snowex_nsidc_search\",\"id\":\"4fh28s-EPcgc\",\"x\":425,\"y\":59.995826721191406,\"color\":\"\"},{\"title\":\"snowex_nsidc_download_script\",\"id\":\"6zzyji-xo0u7\",\"x\":343,\"y\":245,\"color\":\"\"},{\"title\":\"snowex_nsidc_download_api\",\"id\":\"li3z29-jvE6t\",\"x\":631,\"y\":142,\"color\":\"\"},{\"title\":\"snowex_nsidc_read_data\",\"id\":\"pvrvwa-dpOrs\",\"x\":631,\"y\":322,\"color\":\"\"},{\"title\":\"snowex_ml_experiment\",\"id\":\"7nyo77-14Q6Y\",\"x\":467,\"y\":462,\"color\":\"\"}]"
+}

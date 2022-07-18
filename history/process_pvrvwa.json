@@ -1,0 +1,171 @@
+[{
+  "history_id" : "7bBdaGEJkFIq",
+  "history_input" : "import os\nimport geopandas as gpd\nfrom shapely.geometry import Polygon, mapping\nfrom shapely.geometry.polygon import orient\nimport pandas as pd \nimport requests\nimport json\nimport pprint\nimport getpass\nimport netrc\nfrom platform import system\nfrom getpass import getpass\nfrom urllib import request\nfrom http.cookiejar import CookieJar\nfrom os.path import join, expanduser\nimport requests\nfrom xml.etree import ElementTree as ET\nimport time\nimport zipfile\nimport io\nimport shutil\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error\nimport requests\nimport os\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/snowx/\"\n\nsnowex_path = f'{datadir}/SnowEx17_GPR_Version2_Week1.csv' # Define local filepath\ndf = pd.read_csv(snowex_path, sep='\\t') \nprint(df.head())\n\n# extract date columns\n\ndf['date'] = df.collection.str.rsplit('_').str[-1].astype(str)\ndf.date = pd.to_datetime(df.date, format=\"%m%d%y\")\ndf = df.sort_values(['date'])\nprint(df.head())\n\n# Convert to Geopandas dataframe to provide point geometry\n\ngdf_utm= gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.x, df.y), crs='EPSG:32612')\nprint(gdf_utm.head())\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/snowx/\"\n\nexampledataurl = \"https://raw.githubusercontent.com/snowex-hackweek/website/main/book/tutorials/machine-learning/data/snow_depth_data.csv\"\n\nr = requests.get(exampledataurl, allow_redirects=True)\n\nwith open(f\"{datadir}/snow_depth_data.csv\", 'wb') as datafile:\n  datafile.write(r.content)\n",
+  "history_output" : "        collection  trace        long  ...              x             y  UTM_Zone\n0  GPR_0042_020817   2581 -108.066856  ...  753854.880092  4.325659e+06      12 S\n1  GPR_0042_020817   2582 -108.066856  ...  753854.899385  4.325660e+06      12 S\n2  GPR_0042_020817   2583 -108.066856  ...  753854.918686  4.325660e+06      12 S\n3  GPR_0042_020817   2584 -108.066855  ...  753854.937987  4.325660e+06      12 S\n4  GPR_0042_020817   2585 -108.066855  ...  753854.957280  4.325660e+06      12 S\n[5 rows x 11 columns]\n             collection  trace        long  ...             y  UTM_Zone       date\n0       GPR_0042_020817   2581 -108.066856  ...  4.325659e+06      12 S 2017-02-08\n109172  GPR_0043_020817   6360 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109173  GPR_0043_020817   6361 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109174  GPR_0043_020817   6362 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n109175  GPR_0043_020817   6363 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n[5 rows x 12 columns]\n             collection  trace  ...       date                        geometry\n0       GPR_0042_020817   2581  ... 2017-02-08  POINT (753854.880 4325659.484)\n109172  GPR_0043_020817   6360  ... 2017-02-08  POINT (754148.854 4326341.915)\n109173  GPR_0043_020817   6361  ... 2017-02-08  POINT (754148.883 4326341.916)\n109174  GPR_0043_020817   6362  ... 2017-02-08  POINT (754148.911 4326341.917)\n109175  GPR_0043_020817   6363  ... 2017-02-08  POINT (754148.947 4326341.918)\n[5 rows x 13 columns]\n",
+  "history_begin_time" : 1657493139124,
+  "history_end_time" : 1657493169911,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : null,
+  "indicator" : "Done"
+},{
+  "history_id" : "F4AFPMHd9zcG",
+  "history_input" : "import os\nimport geopandas as gpd\nfrom shapely.geometry import Polygon, mapping\nfrom shapely.geometry.polygon import orient\nimport pandas as pd \nimport requests\nimport json\nimport pprint\nimport getpass\nimport netrc\nfrom platform import system\nfrom getpass import getpass\nfrom urllib import request\nfrom http.cookiejar import CookieJar\nfrom os.path import join, expanduser\nimport requests\nfrom xml.etree import ElementTree as ET\nimport time\nimport zipfile\nimport io\nimport shutil\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error\nimport requests\nimport os\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/snowx/\"\n\nsnowex_path = f'{datadir}/SnowEx17_GPR_Version2_Week1.csv' # Define local filepath\ndf = pd.read_csv(snowex_path, sep='\\t') \nprint(df.head())\n\n# extract date columns\n\ndf['date'] = df.collection.str.rsplit('_').str[-1].astype(str)\ndf.date = pd.to_datetime(df.date, format=\"%m%d%y\")\ndf = df.sort_values(['date'])\nprint(df.head())\n\n# Convert to Geopandas dataframe to provide point geometry\n\ngdf_utm= gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.x, df.y), crs='EPSG:32612')\nprint(gdf_utm.head())\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/snowx/\"\n\nexampledataurl = \"https://raw.githubusercontent.com/snowex-hackweek/website/main/book/tutorials/machine-learning/data/snow_depth_data.csv\"\n\nr = requests.get(exampledataurl, allow_redirects=True)\n\nwith open(f\"{datadir}/snow_depth_data.csv\", 'wb') as datafile:\n  datafile.write(r.content)\n",
+  "history_output" : "Traceback (most recent call last):\n  File \"snowex_nsidc_read_data.py\", line 28, in <module>\n    from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error\nImportError: cannot import name 'mean_absolute_percentage_error' from 'sklearn.metrics' (/opt/anaconda3/lib/python3.8/site-packages/sklearn/metrics/__init__.py)\n",
+  "history_begin_time" : 1657492960703,
+  "history_end_time" : 1657492963849,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : null,
+  "indicator" : "Failed"
+},{
+  "history_id" : "DvgCDjMYD3XU",
+  "history_input" : "import os\nimport geopandas as gpd\nfrom shapely.geometry import Polygon, mapping\nfrom shapely.geometry.polygon import orient\nimport pandas as pd \nimport requests\nimport json\nimport pprint\nimport getpass\nimport netrc\nfrom platform import system\nfrom getpass import getpass\nfrom urllib import request\nfrom http.cookiejar import CookieJar\nfrom os.path import join, expanduser\nimport requests\nfrom xml.etree import ElementTree as ET\nimport time\nimport zipfile\nimport io\nimport shutil\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error\nimport requests\nimport os\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/snowx/\"\n\nsnowex_path = f'{datadir}/SnowEx17_GPR_Version2_Week1.csv' # Define local filepath\ndf = pd.read_csv(snowex_path, sep='\\t') \nprint(df.head())\n\n# extract date columns\n\ndf['date'] = df.collection.str.rsplit('_').str[-1].astype(str)\ndf.date = pd.to_datetime(df.date, format=\"%m%d%y\")\ndf = df.sort_values(['date'])\nprint(df.head())\n\n# Convert to Geopandas dataframe to provide point geometry\n\ngdf_utm= gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.x, df.y), crs='EPSG:32612')\nprint(gdf_utm.head())\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/snowx/\"\n\nexampledataurl = \"https://raw.githubusercontent.com/snowex-hackweek/website/main/book/tutorials/machine-learning/data/snow_depth_data.csv\"\n\nr = requests.get(exampledataurl, allow_redirects=True)\n\nwith open(f\"{datadir}/snow_depth_data.csv\", 'wb') as datafile:\n  datafile.write(r.content)\n",
+  "history_output" : "Traceback (most recent call last):\n  File \"snowex_nsidc_read_data.py\", line 28, in <module>\n    from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error\nImportError: cannot import name 'mean_absolute_percentage_error' from 'sklearn.metrics' (/opt/anaconda3/lib/python3.8/site-packages/sklearn/metrics/__init__.py)\n",
+  "history_begin_time" : 1657492900826,
+  "history_end_time" : 1657492916568,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : null,
+  "indicator" : "Failed"
+},{
+  "history_id" : "ali4camiq4t",
+  "history_input" : "import os\nimport geopandas as gpd\nfrom shapely.geometry import Polygon, mapping\nfrom shapely.geometry.polygon import orient\nimport pandas as pd \nimport requests\nimport json\nimport pprint\nimport getpass\nimport netrc\nfrom platform import system\nfrom getpass import getpass\nfrom urllib import request\nfrom http.cookiejar import CookieJar\nfrom os.path import join, expanduser\nimport requests\nfrom xml.etree import ElementTree as ET\nimport time\nimport zipfile\nimport io\nimport shutil\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error\nimport requests\nimport os\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/Documents/data/\"\n\nsnowex_path = f'{datadir}/SnowEx17_GPR_Version2_Week1.csv' # Define local filepath\ndf = pd.read_csv(snowex_path, sep='\\t') \nprint(df.head())\n\n# extract date columns\n\ndf['date'] = df.collection.str.rsplit('_').str[-1].astype(str)\ndf.date = pd.to_datetime(df.date, format=\"%m%d%y\")\ndf = df.sort_values(['date'])\nprint(df.head())\n\n# Convert to Geopandas dataframe to provide point geometry\n\ngdf_utm= gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.x, df.y), crs='EPSG:32612')\nprint(gdf_utm.head())\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/Documents/data/\"\n\nexampledataurl = \"https://raw.githubusercontent.com/snowex-hackweek/website/main/book/tutorials/machine-learning/data/snow_depth_data.csv\"\n\nr = requests.get(exampledataurl, allow_redirects=True)\n\nwith open(f\"{datadir}/snow_depth_data.csv\", 'wb') as datafile:\n  datafile.write(r.content)\n",
+  "history_output" : "        collection  trace        long  ...              x             y  UTM_Zone\n0  GPR_0042_020817   2581 -108.066856  ...  753854.880092  4.325659e+06      12 S\n1  GPR_0042_020817   2582 -108.066856  ...  753854.899385  4.325660e+06      12 S\n2  GPR_0042_020817   2583 -108.066856  ...  753854.918686  4.325660e+06      12 S\n3  GPR_0042_020817   2584 -108.066855  ...  753854.937987  4.325660e+06      12 S\n4  GPR_0042_020817   2585 -108.066855  ...  753854.957280  4.325660e+06      12 S\n[5 rows x 11 columns]\n             collection  trace        long  ...             y  UTM_Zone       date\n0       GPR_0042_020817   2581 -108.066856  ...  4.325659e+06      12 S 2017-02-08\n109172  GPR_0043_020817   6360 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109173  GPR_0043_020817   6361 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109174  GPR_0043_020817   6362 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n109175  GPR_0043_020817   6363 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n[5 rows x 12 columns]\n             collection  trace  ...       date                        geometry\n0       GPR_0042_020817   2581  ... 2017-02-08  POINT (753854.880 4325659.484)\n109172  GPR_0043_020817   6360  ... 2017-02-08  POINT (754148.854 4326341.915)\n109173  GPR_0043_020817   6361  ... 2017-02-08  POINT (754148.883 4326341.916)\n109174  GPR_0043_020817   6362  ... 2017-02-08  POINT (754148.911 4326341.917)\n109175  GPR_0043_020817   6363  ... 2017-02-08  POINT (754148.947 4326341.918)\n[5 rows x 13 columns]\n",
+  "history_begin_time" : 1642609030263,
+  "history_end_time" : 1642609037982,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Done"
+},{
+  "history_id" : "hxcsfg8mbuf",
+  "history_input" : null,
+  "history_output" : "Authentication Failed. Wrong Password.",
+  "history_begin_time" : 1642608942421,
+  "history_end_time" : 1642608942456,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Failed"
+},{
+  "history_id" : "mo06awzkxkt",
+  "history_input" : null,
+  "history_output" : "Authentication Failed. Wrong Password.",
+  "history_begin_time" : 1642608918181,
+  "history_end_time" : 1642608918223,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Failed"
+},{
+  "history_id" : "k4g3c90iabw",
+  "history_input" : "import os\nimport geopandas as gpd\nfrom shapely.geometry import Polygon, mapping\nfrom shapely.geometry.polygon import orient\nimport pandas as pd \nimport requests\nimport json\nimport pprint\nimport getpass\nimport netrc\nfrom platform import system\nfrom getpass import getpass\nfrom urllib import request\nfrom http.cookiejar import CookieJar\nfrom os.path import join, expanduser\nimport requests\nfrom xml.etree import ElementTree as ET\nimport time\nimport zipfile\nimport io\nimport shutil\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error\nimport requests\nimport os\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/Documents/data/\"\n\nsnowex_path = f'{datadir}/SnowEx17_GPR_Version2_Week1.csv' # Define local filepath\ndf = pd.read_csv(snowex_path, sep='\\t') \nprint(df.head())\n\n# extract date columns\n\ndf['date'] = df.collection.str.rsplit('_').str[-1].astype(str)\ndf.date = pd.to_datetime(df.date, format=\"%m%d%y\")\ndf = df.sort_values(['date'])\nprint(df.head())\n\n# Convert to Geopandas dataframe to provide point geometry\n\ngdf_utm= gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.x, df.y), crs='EPSG:32612')\nprint(gdf_utm.head())\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/Documents/data/\"\n\nexampledataurl = \"https://raw.githubusercontent.com/snowex-hackweek/website/main/book/tutorials/machine-learning/data/snow_depth_data.csv\"\n\nr = requests.get(exampledataurl, allow_redirects=True)\n\nwith open(f\"{datadir}/snow_depth_data.csv\", 'wb') as datafile:\n  datafile.write(r.content)\n",
+  "history_output" : "        collection  trace        long  ...              x             y  UTM_Zone\n0  GPR_0042_020817   2581 -108.066856  ...  753854.880092  4.325659e+06      12 S\n1  GPR_0042_020817   2582 -108.066856  ...  753854.899385  4.325660e+06      12 S\n2  GPR_0042_020817   2583 -108.066856  ...  753854.918686  4.325660e+06      12 S\n3  GPR_0042_020817   2584 -108.066855  ...  753854.937987  4.325660e+06      12 S\n4  GPR_0042_020817   2585 -108.066855  ...  753854.957280  4.325660e+06      12 S\n[5 rows x 11 columns]\n             collection  trace        long  ...             y  UTM_Zone       date\n0       GPR_0042_020817   2581 -108.066856  ...  4.325659e+06      12 S 2017-02-08\n109172  GPR_0043_020817   6360 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109173  GPR_0043_020817   6361 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109174  GPR_0043_020817   6362 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n109175  GPR_0043_020817   6363 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n[5 rows x 12 columns]\n             collection  trace  ...       date                        geometry\n0       GPR_0042_020817   2581  ... 2017-02-08  POINT (753854.880 4325659.484)\n109172  GPR_0043_020817   6360  ... 2017-02-08  POINT (754148.854 4326341.915)\n109173  GPR_0043_020817   6361  ... 2017-02-08  POINT (754148.883 4326341.916)\n109174  GPR_0043_020817   6362  ... 2017-02-08  POINT (754148.911 4326341.917)\n109175  GPR_0043_020817   6363  ... 2017-02-08  POINT (754148.947 4326341.918)\n[5 rows x 13 columns]\n",
+  "history_begin_time" : 1642608620821,
+  "history_end_time" : 1642608629783,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Done"
+},{
+  "history_id" : "hrg3ppew6kj",
+  "history_input" : "import os\nimport geopandas as gpd\nfrom shapely.geometry import Polygon, mapping\nfrom shapely.geometry.polygon import orient\nimport pandas as pd \nimport requests\nimport json\nimport pprint\nimport getpass\nimport netrc\nfrom platform import system\nfrom getpass import getpass\nfrom urllib import request\nfrom http.cookiejar import CookieJar\nfrom os.path import join, expanduser\nimport requests\nfrom xml.etree import ElementTree as ET\nimport time\nimport zipfile\nimport io\nimport shutil\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error\nimport requests\nimport os\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/Documents/data/\"\n\nsnowex_path = f'{datadir}/SnowEx17_GPR_Version2_Week1.csv' # Define local filepath\ndf = pd.read_csv(snowex_path, sep='\\t') \nprint(df.head())\n\n# extract date columns\n\ndf['date'] = df.collection.str.rsplit('_').str[-1].astype(str)\ndf.date = pd.to_datetime(df.date, format=\"%m%d%y\")\ndf = df.sort_values(['date'])\nprint(df.head())\n\n# Convert to Geopandas dataframe to provide point geometry\n\ngdf_utm= gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.x, df.y), crs='EPSG:32612')\nprint(gdf_utm.head())\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/Documents/data/\"\n\nexampledataurl = \"https://raw.githubusercontent.com/snowex-hackweek/website/main/book/tutorials/machine-learning/data/snow_depth_data.csv\"\n\nr = requests.get(exampledataurl, allow_redirects=True)\n\nwith open(f\"{datadir}/snow_depth_data.csv\", 'wb') as datafile:\n  datafile.write(r.content)\n",
+  "history_output" : "  File \"snowex_nsidc_read_data.py\", line 33\n    datadir = f\"{homedir}/Documents/data/\"\n                                         ^\nSyntaxError: invalid syntax\n",
+  "history_begin_time" : 1642607498936,
+  "history_end_time" : 1642607499108,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Done"
+},{
+  "history_id" : "bhoje3t127t",
+  "history_input" : null,
+  "history_output" : "Authentication Failed. Wrong Password.",
+  "history_begin_time" : 1642607464483,
+  "history_end_time" : 1642607464549,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Failed"
+},{
+  "history_id" : "f2zmexoa350",
+  "history_input" : null,
+  "history_output" : "Authentication Failed. Wrong Password.",
+  "history_begin_time" : 1642606602383,
+  "history_end_time" : 1642606602526,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Failed"
+},{
+  "history_id" : "gigdo23m1r1",
+  "history_input" : null,
+  "history_output" : "Authentication Failed. Wrong Password.",
+  "history_begin_time" : 1642606579782,
+  "history_end_time" : 1642606579874,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Failed"
+},{
+  "history_id" : "i3qydp250pc",
+  "history_input" : null,
+  "history_output" : "Authentication Failed. Wrong Password.",
+  "history_begin_time" : 1642606525285,
+  "history_end_time" : 1642606525399,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Failed"
+},{
+  "history_id" : "2j9joo622e7",
+  "history_input" : null,
+  "history_output" : "Authentication Failed. Wrong Password.",
+  "history_begin_time" : 1642606502918,
+  "history_end_time" : 1642606503017,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Failed"
+},{
+  "history_id" : "tko226y0tzp",
+  "history_input" : null,
+  "history_output" : "Authentication Failed. Wrong Password.",
+  "history_begin_time" : 1642606455562,
+  "history_end_time" : 1642606455701,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Failed"
+},{
+  "history_id" : "m07q6qjuxep",
+  "history_input" : "import os\nimport geopandas as gpd\nfrom shapely.geometry import Polygon, mapping\nfrom shapely.geometry.polygon import orient\nimport pandas as pd \nimport requests\nimport json\nimport pprint\nimport getpass\nimport netrc\nfrom platform import system\nfrom getpass import getpass\nfrom urllib import request\nfrom http.cookiejar import CookieJar\nfrom os.path import join, expanduser\nimport requests\nfrom xml.etree import ElementTree as ET\nimport time\nimport zipfile\nimport io\nimport shutil\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error\nimport requests\nimport os\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/Documents/data/\"\n\nsnowex_path = f'{datadir}/SnowEx17_GPR_Version2_Week1.csv' # Define local filepath\ndf = pd.read_csv(snowex_path, sep='\\t') \nprint(df.head())\n\n# extract date columns\n\ndf['date'] = df.collection.str.rsplit('_').str[-1].astype(str)\ndf.date = pd.to_datetime(df.date, format=\"%m%d%y\")\ndf = df.sort_values(['date'])\nprint(df.head())\n\n# Convert to Geopandas dataframe to provide point geometry\n\ngdf_utm= gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.x, df.y), crs='EPSG:32612')\nprint(gdf_utm.head())\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/Documents/data/\"\n\nexampledataurl = \"https://raw.githubusercontent.com/snowex-hackweek/website/main/book/tutorials/machine-learning/data/snow_depth_data.csv\"\n\nr = requests.get(exampledataurl, allow_redirects=True)\n\nwith open(f\"{datadir}/snow_depth_data.csv\", 'wb') as datafile:\n  datafile.write(r.content)\n",
+  "history_output" : "        collection  trace        long  ...              x             y  UTM_Zone\n0  GPR_0042_020817   2581 -108.066856  ...  753854.880092  4.325659e+06      12 S\n1  GPR_0042_020817   2582 -108.066856  ...  753854.899385  4.325660e+06      12 S\n2  GPR_0042_020817   2583 -108.066856  ...  753854.918686  4.325660e+06      12 S\n3  GPR_0042_020817   2584 -108.066855  ...  753854.937987  4.325660e+06      12 S\n4  GPR_0042_020817   2585 -108.066855  ...  753854.957280  4.325660e+06      12 S\n[5 rows x 11 columns]\n             collection  trace        long  ...             y  UTM_Zone       date\n0       GPR_0042_020817   2581 -108.066856  ...  4.325659e+06      12 S 2017-02-08\n109172  GPR_0043_020817   6360 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109173  GPR_0043_020817   6361 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109174  GPR_0043_020817   6362 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n109175  GPR_0043_020817   6363 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n[5 rows x 12 columns]\n             collection  trace  ...       date                        geometry\n0       GPR_0042_020817   2581  ... 2017-02-08  POINT (753854.880 4325659.484)\n109172  GPR_0043_020817   6360  ... 2017-02-08  POINT (754148.854 4326341.915)\n109173  GPR_0043_020817   6361  ... 2017-02-08  POINT (754148.883 4326341.916)\n109174  GPR_0043_020817   6362  ... 2017-02-08  POINT (754148.911 4326341.917)\n109175  GPR_0043_020817   6363  ... 2017-02-08  POINT (754148.947 4326341.918)\n[5 rows x 13 columns]\n",
+  "history_begin_time" : 1642584167849,
+  "history_end_time" : 1642584178245,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Done"
+},{
+  "history_id" : "1x3r9grr77g",
+  "history_input" : "import os\nimport geopandas as gpd\nfrom shapely.geometry import Polygon, mapping\nfrom shapely.geometry.polygon import orient\nimport pandas as pd \nimport requests\nimport json\nimport pprint\nimport getpass\nimport netrc\nfrom platform import system\nfrom getpass import getpass\nfrom urllib import request\nfrom http.cookiejar import CookieJar\nfrom os.path import join, expanduser\nimport requests\nfrom xml.etree import ElementTree as ET\nimport time\nimport zipfile\nimport io\nimport shutil\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/Documents/data/\"\n\nsnowex_path = f'{datadir}/SnowEx17_GPR_Version2_Week1.csv' # Define local filepath\ndf = pd.read_csv(snowex_path, sep='\\t') \nprint(df.head())\n\n# extract date columns\n\ndf['date'] = df.collection.str.rsplit('_').str[-1].astype(str)\ndf.date = pd.to_datetime(df.date, format=\"%m%d%y\")\ndf = df.sort_values(['date'])\nprint(df.head())\n\n# Convert to Geopandas dataframe to provide point geometry\n\ngdf_utm= gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.x, df.y), crs='EPSG:32612')\nprint(gdf_utm.head())\n\n",
+  "history_output" : "        collection  trace        long  ...              x             y  UTM_Zone\n0  GPR_0042_020817   2581 -108.066856  ...  753854.880092  4.325659e+06      12 S\n1  GPR_0042_020817   2582 -108.066856  ...  753854.899385  4.325660e+06      12 S\n2  GPR_0042_020817   2583 -108.066856  ...  753854.918686  4.325660e+06      12 S\n3  GPR_0042_020817   2584 -108.066855  ...  753854.937987  4.325660e+06      12 S\n4  GPR_0042_020817   2585 -108.066855  ...  753854.957280  4.325660e+06      12 S\n[5 rows x 11 columns]\n             collection  trace        long  ...             y  UTM_Zone       date\n0       GPR_0042_020817   2581 -108.066856  ...  4.325659e+06      12 S 2017-02-08\n109172  GPR_0043_020817   6360 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109173  GPR_0043_020817   6361 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109174  GPR_0043_020817   6362 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n109175  GPR_0043_020817   6363 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n[5 rows x 12 columns]\n             collection  trace  ...       date                        geometry\n0       GPR_0042_020817   2581  ... 2017-02-08  POINT (753854.880 4325659.484)\n109172  GPR_0043_020817   6360  ... 2017-02-08  POINT (754148.854 4326341.915)\n109173  GPR_0043_020817   6361  ... 2017-02-08  POINT (754148.883 4326341.916)\n109174  GPR_0043_020817   6362  ... 2017-02-08  POINT (754148.911 4326341.917)\n109175  GPR_0043_020817   6363  ... 2017-02-08  POINT (754148.947 4326341.918)\n[5 rows x 13 columns]\n",
+  "history_begin_time" : 1642579773712,
+  "history_end_time" : 1642579780124,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Done"
+},{
+  "history_id" : "yvyh1xs5hu0",
+  "history_input" : "import os\nimport geopandas as gpd\nfrom shapely.geometry import Polygon, mapping\nfrom shapely.geometry.polygon import orient\nimport pandas as pd \nimport requests\nimport json\nimport pprint\nimport getpass\nimport netrc\nfrom platform import system\nfrom getpass import getpass\nfrom urllib import request\nfrom http.cookiejar import CookieJar\nfrom os.path import join, expanduser\nimport requests\nfrom xml.etree import ElementTree as ET\nimport time\nimport zipfile\nimport io\nimport shutil\n\nhomedir = os.path.expanduser('~')\ndatadir = f\"{homedir}/Documents/data/\"\n\nsnowex_path = f'{datadir}/SnowEx17_GPR_Version2_Week1.csv' # Define local filepath\ndf = pd.read_csv(snowex_path, sep='\\t') \nprint(df.head())\n\n# extract date columns\n\ndf['date'] = df.collection.str.rsplit('_').str[-1].astype(str)\ndf.date = pd.to_datetime(df.date, format=\"%m%d%y\")\ndf = df.sort_values(['date'])\nprint(df.head())\n\n# Convert to Geopandas dataframe to provide point geometry\n\ngdf_utm= gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.x, df.y), crs='EPSG:32612')\nprint(gdf_utm.head())\n\n",
+  "history_output" : "        collection  trace        long  ...              x             y  UTM_Zone\n0  GPR_0042_020817   2581 -108.066856  ...  753854.880092  4.325659e+06      12 S\n1  GPR_0042_020817   2582 -108.066856  ...  753854.899385  4.325660e+06      12 S\n2  GPR_0042_020817   2583 -108.066856  ...  753854.918686  4.325660e+06      12 S\n3  GPR_0042_020817   2584 -108.066855  ...  753854.937987  4.325660e+06      12 S\n4  GPR_0042_020817   2585 -108.066855  ...  753854.957280  4.325660e+06      12 S\n[5 rows x 11 columns]\n             collection  trace        long  ...             y  UTM_Zone       date\n0       GPR_0042_020817   2581 -108.066856  ...  4.325659e+06      12 S 2017-02-08\n109172  GPR_0043_020817   6360 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109173  GPR_0043_020817   6361 -108.063209  ...  4.326342e+06      12 S 2017-02-08\n109174  GPR_0043_020817   6362 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n109175  GPR_0043_020817   6363 -108.063208  ...  4.326342e+06      12 S 2017-02-08\n[5 rows x 12 columns]\n             collection  trace  ...       date                        geometry\n0       GPR_0042_020817   2581  ... 2017-02-08  POINT (753854.880 4325659.484)\n109172  GPR_0043_020817   6360  ... 2017-02-08  POINT (754148.854 4326341.915)\n109173  GPR_0043_020817   6361  ... 2017-02-08  POINT (754148.883 4326341.916)\n109174  GPR_0043_020817   6362  ... 2017-02-08  POINT (754148.911 4326341.917)\n109175  GPR_0043_020817   6363  ... 2017-02-08  POINT (754148.947 4326341.918)\n[5 rows x 13 columns]\n",
+  "history_begin_time" : 1642579716324,
+  "history_end_time" : 1642579723012,
+  "history_notes" : null,
+  "history_process" : "pvrvwa",
+  "host_id" : "100001",
+  "indicator" : "Done"
+},]
